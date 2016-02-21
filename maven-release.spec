@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.2.1
-Release:        12.13%{?dist}
+Release:        12.14%{?dist}
 Summary:        Release a project updating the POM and tagging in the SCM
 
 License:        ASL 2.0
@@ -18,21 +18,21 @@ BuildArch:      noarch
 
 BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
 BuildRequires:  %{?scl_prefix_java_common}maven-local
-BuildRequires:  maven30-maven-scm-test
-BuildRequires:  maven30-maven-antrun-plugin
-BuildRequires:  maven30-maven-jar-plugin
-BuildRequires:  maven30-maven-javadoc-plugin
-BuildRequires:  maven30-maven-source-plugin
-BuildRequires:  maven30-maven-compiler-plugin
-BuildRequires:  maven30-maven-install-plugin
-BuildRequires:  maven30-maven-plugin-plugin
-BuildRequires:  maven30-maven-resources-plugin
-BuildRequires:  maven30-maven-site-plugin
-BuildRequires:  maven30-maven-plugin-testing-harness
-BuildRequires:  maven30-plexus-containers-component-metadata
-BuildRequires:  maven30-plexus-utils
-BuildRequires:  maven30-maven-surefire-plugin
-BuildRequires:  maven30-maven-enforcer-plugin
+BuildRequires:  %{?scl_prefix}maven-scm-test
+BuildRequires:  %{?scl_prefix}maven-antrun-plugin
+BuildRequires:  %{?scl_prefix}maven-jar-plugin
+BuildRequires:  %{?scl_prefix}maven-javadoc-plugin
+BuildRequires:  %{?scl_prefix}maven-source-plugin
+BuildRequires:  %{?scl_prefix}maven-compiler-plugin
+BuildRequires:  %{?scl_prefix}maven-install-plugin
+BuildRequires:  %{?scl_prefix}maven-plugin-plugin
+BuildRequires:  %{?scl_prefix}maven-resources-plugin
+BuildRequires:  %{?scl_prefix}maven-site-plugin
+BuildRequires:  %{?scl_prefix}maven-plugin-testing-harness
+BuildRequires:  %{?scl_prefix}plexus-containers-component-metadata
+BuildRequires:  %{?scl_prefix}plexus-utils
+BuildRequires:  %{?scl_prefix}maven-surefire-plugin
+BuildRequires:  %{?scl_prefix}maven-enforcer-plugin
 BuildRequires:  %{?scl_prefix_java_common}jaxen
 
 
@@ -70,7 +70,7 @@ This package contains the API documentation for %{pkg_name}.
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 %patch1 -p1
@@ -98,14 +98,14 @@ EOT
 
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 # Skip tests because we don't have dependencies (jmock)
 %mvn_build -f
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -125,6 +125,9 @@ set -e -x
 
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 2.2.1-12.14
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 2.2.1-12.13
 - maven33 rebuild
 
