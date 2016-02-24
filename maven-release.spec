@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.2.1
-Release:        12.14%{?dist}
+Release:        12.15%{?dist}
 Summary:        Release a project updating the POM and tagging in the SCM
 
 License:        ASL 2.0
@@ -13,6 +13,7 @@ Source0:        http://repo1.maven.org/maven2/org/apache/maven/release/%{pkg_nam
 # Remove deps needed for tests, till jmock gets packaged
 Patch1:         002-mavenrelease-fixbuild.patch
 Patch2:         003-fixing-migration-to-component-metadata.patch
+Patch3:         maven-release-MNG-3954.patch
 
 BuildArch:      noarch
 
@@ -75,6 +76,7 @@ set -e -x
 
 %patch1 -p1
 %patch2 -p1
+%patch3 -p0
 
 # Jmock and mockito are not present
 %pom_remove_dep jmock:
@@ -125,6 +127,9 @@ set -e -x
 
 
 %changelog
+* Wed Jan 20 2016 Michal Srb <msrb@redhat.com> - 2.2.1-12.15
+- Fix FTBFS
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 2.2.1-12.14
 - maven33 rebuild #2
 

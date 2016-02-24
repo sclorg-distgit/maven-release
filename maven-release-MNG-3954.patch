@@ -1,0 +1,12 @@
+--- maven-release-manager/src/main/java/org/apache/maven/shared/release/exec/InvokerMavenExecutor.java~	2011-07-28 15:42:12.000000000 +0200
++++ maven-release-manager/src/main/java/org/apache/maven/shared/release/exec/InvokerMavenExecutor.java	2015-11-27 08:41:43.677304909 +0100
+@@ -364,8 +364,7 @@
+ 
+         if ( releaseEnvironment.getSettings() != null )
+         {
+-            // FIXME: This is effectively useless in Maven 2.x, since getFile() always returns null
+-            File settingsFile = releaseEnvironment.getSettings().getRuntimeInfo().getFile();
++            File settingsFile = org.apache.maven.settings.RuntimeInfo.DEFAULT_USER_SETTINGS_FILE;
+             if ( settingsFile != null && settingsFile.isFile() )
+             {
+                 req.setUserSettingsFile( settingsFile );
