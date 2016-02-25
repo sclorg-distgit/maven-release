@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.2.1
-Release:        12.15%{?dist}
+Release:        12.16%{?dist}
 Summary:        Release a project updating the POM and tagging in the SCM
 
 License:        ASL 2.0
@@ -18,7 +18,7 @@ Patch3:         maven-release-MNG-3954.patch
 BuildArch:      noarch
 
 BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix}maven-scm-test
 BuildRequires:  %{?scl_prefix}maven-antrun-plugin
 BuildRequires:  %{?scl_prefix}maven-jar-plugin
@@ -127,6 +127,9 @@ set -e -x
 
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 2.2.1-12.16
+- Fix BR on maven-local & co.
+
 * Wed Jan 20 2016 Michal Srb <msrb@redhat.com> - 2.2.1-12.15
 - Fix FTBFS
 
